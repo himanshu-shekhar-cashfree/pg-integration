@@ -21,7 +21,8 @@ app.post("/createOrder", async (req, res) => {
       customer_email: customer_email || "",
     },
     order_meta: {
-      return_url: "http://localhost:3000/return?order_id={order_id}",
+      return_url:
+        "https://pg-integration.onrender.com/return?order_id={order_id}",
     },
   };
   console.log(process.env.APP_ID);
