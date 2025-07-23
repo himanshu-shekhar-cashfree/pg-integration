@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Status</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Payment Status</h1>
+            <p>Details of your transaction</p>
+        </header>
+        <main>
+            <div class="checkout-form">
+                <h2>Transaction Details</h2>
+                <div id="payment-status">
+                    <p><strong>Order ID:</strong> <span id="order-id">Loading...</span></p>
+                    <p><strong>Status:</strong> <span id="status">Loading...</span></p>
+                    <p><strong>Message:</strong> <span id="message">Please wait while we fetch the payment
+                            status.</span></p>
+                </div>
+                <a href="/" class="pay-button">Return to Home</a>
+            </div>
+        </main>
+        <footer>
+            <p>Powered by Cashfree</p>
+        </footer>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const order_Id = urlParams.get("order_id");
+            // const orderToken = urlParams.get("order_token");
+
+            document.getElementById("order-id").textContent = order_Id || "N/A";
+
+            if (order_Id) {
+                try {
+                    const response = await fetch("/verifyPayment", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ order_id: order_Id }),
+                    });
+
+                    const result = await response.json();
+                    if (result.success) {
+                        document.getElementById("status").textContent = result.order_status;
+                        document.getElementById("message").textContent =
+                            result.order_status === "PAID"
+                                ? "Thank you for your purchase!"
+                                : "Payment failed or is pending. Please contact support.";
+                    } else {
+                        document.getElementById("status").textContent = "Not aid";
+                        document.getElementById("message").textContent =
+                            "order not paid.";
+                    }
+                } catch (err) {
+                    document.getElementById("status").textContent = "Error";
+                    document.getElementById("message").textContent =
+                        "An error occurred while verifying the payment.";
+                }
+            } else {
+                document.getElementById("status").textContent = "Invalid";
+                document.getElementById("message").textContent =
+                    "Missing order details. Please try again.";
+            }
+        });
+    </script>
+</body>
+
+</html>

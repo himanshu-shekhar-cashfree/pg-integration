@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cashfree PG Demo</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Demo Store</h1>
+            <p>Secure checkout powered by Cashfree</p>
+        </header>
+
+        <main>
+            <div class="product-details">
+
+                <div class="product-info">
+                    <h2>Demo Product</h2>
+                    <p class="description">This is a sample product for demonstrating Cashfree payment gateway
+                        integration.</p>
+                    <p class="price">₹100000.00</p>
+                </div>
+            </div>
+
+            <div class="checkout-form">
+                <h2>Checkout Details</h2>
+                <form id="paymentForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer_id">Customer ID</label>
+                        <input type="text" id="customer_id" name="customer_id" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Shipping Address</label>
+                        <textarea id="address" name="address" rows="3" required></textarea>
+                    </div>
+
+                    <div class="payment-methods">
+                        <h3>Payment Method</h3>
+                        <div class="methods">
+                            <label class="method">
+                                <input type="radio" name="paymentMethod" value="card" checked>
+                                <span>Credit/Debit Card</span>
+                            </label>
+                            <label class="method">
+                                <input type="radio" name="paymentMethod" value="upi">
+                                <span>UPI</span>
+                            </label>
+                            <label class="method">
+                                <input type="radio" name="paymentMethod" value="netbanking">
+                                <span>Net Banking</span>
+                            </label>
+                            <label class="method">
+                                <input type="radio" name="paymentMethod" value="wallet">
+                                <span>Wallets</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="button" id="payButton" class="pay-button">Proceed to Pay ₹499.00</button>
+                </form>
+            </div>
+        </main>
+
+        <footer>
+            <p>This is a demo website for Cashfree PG integration. No real transactions will occur.</p>
+        </footer>
+    </div>
+
+    <script src="/assets/js/script.js"></script>
+</body>
+
+</html>
