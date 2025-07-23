@@ -25,7 +25,7 @@ app.post("/createOrder", async (req, res) => {
         "https://pg-integration.onrender.com/return?order_id={order_id}",
     },
   };
-  console.log(process.env.APP_ID);
+
   const options = {
     method: "POST",
     headers: {
